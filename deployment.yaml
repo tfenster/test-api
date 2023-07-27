@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-api
+  template:
+    metadata:
+      labels:
+        app: test-api
+    spec:
+      containers:
+      - name: test-api
+        image: tobiasfenster/test-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5176
+      targetPort: 80
+      name: "http"
+  selector:
+    app: frontend

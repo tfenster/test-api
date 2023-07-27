@@ -1,0 +1,2 @@
+docker build -t tobiasfenster/test-api .
+docker push tobiasfenster/test-api
