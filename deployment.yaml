@@ -27,7 +27,7 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      port: 5176
+      port: 80
       targetPort: 80
       name: "http"
   selector:
