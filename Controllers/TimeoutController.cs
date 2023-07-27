@@ -20,6 +20,14 @@ public class TimeoutController : ControllerBase
     {
         _logger.LogInformation("Get called");
 
+        var headers = Request.Headers;
+        foreach (var header in headers)
+        {
+            var key = header.Key;
+            var value = header.Value;
+            _logger.LogInformation($"Header: {key} = {value}");
+        }
+
         _startTime = DateTime.UtcNow;
         while (DateTime.UtcNow < _startTime.AddSeconds(durationInSeconds))
         {
