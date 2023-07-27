@@ -20,7 +20,7 @@ spec:
         kubernetes.io/os: linux
 ---
 apiVersion: v1
-kind: Service
+kind: LoadBalancer
 metadata:
   name: test-api
 spec:
@@ -31,4 +31,4 @@ spec:
       targetPort: 80
       name: "http"
   selector:
-    app: frontend
+    app: test-api
