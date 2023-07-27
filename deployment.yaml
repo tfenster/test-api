@@ -15,6 +15,7 @@ spec:
       containers:
       - name: test-api
         image: tobiasfenster/test-api
+        imagePullPolicy: AlwaysPull
       nodeSelector:
         kubernetes.io/os: linux
 ---
