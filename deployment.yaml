@@ -20,7 +20,7 @@ spec:
         kubernetes.io/os: linux
       livenessProbe:
         httpGet:
-          path: /teimout/health
+          path: /timeout/health
           port: 80
         initialDelaySeconds: 3
         periodSeconds: 3
