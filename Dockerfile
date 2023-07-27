@@ -8,6 +8,7 @@ RUN dotnet publish -c release --property:PublishDir=/app -r linux-musl-x64 --sel
 
 FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-alpine
 RUN apk add curl
-HEALTHCHECK CMD curl --fail http://localhost:80/timeout/health || exit 1 
+HEALTHCHECK --interval=5s --timeout=3s --retries=1 \
+  CMD curl --fail http://localhost:80/timeout/health || exit 1
 COPY --from=build /app .
 ENTRYPOINT ["./test-api"]
