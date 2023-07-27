@@ -21,7 +21,8 @@ spec:
             path: /timeout/health
             port: 80
           initialDelaySeconds: 3
-          periodSeconds: 3
+          periodSeconds: 30
+          failureThreshold: 30
       nodeSelector:
         kubernetes.io/os: linux
 ---
