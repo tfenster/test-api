@@ -20,11 +20,11 @@ spec:
         kubernetes.io/os: linux
 ---
 apiVersion: v1
-kind: LoadBalancer
+kind: Service
 metadata:
   name: test-api
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
