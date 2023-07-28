@@ -6,11 +6,18 @@
 				"ms-dotnettools.csdevkit",
 				"GitHub.copilot-chat",
 				"humao.rest-client",
-				"ms-vscode.PowerShell"
+				"ms-vscode.PowerShell",
+				"ms-kubernetes-tools.vscode-kubernetes-tools"
 			]
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {}
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"installUsingPython": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest"
+		}
 	}
 }
