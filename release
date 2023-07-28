@@ -1,2 +1,5 @@
-docker build -t tobiasfenster/test-api .
-docker push tobiasfenster/test-api
+docker build -t tobiasfenster/test-api:linux -f Dockerfile.linux .
+docker push tobiasfenster/test-api:linux
+
+docker build -t tobiasfenster/test-api:windows -f Dockerfile.windows .
+docker push tobiasfenster/test-api:windows
