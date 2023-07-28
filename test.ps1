@@ -1,3 +1,8 @@
+param(
+    [Parameter(Mandatory=$true)]
+    [string]$IPAddress
+)
+
 function Invoke-TestApi {
     param(
         [Parameter(Mandatory=$true)]
@@ -14,8 +19,6 @@ function Invoke-TestApi {
     $result = Invoke-WebRequest -Uri $url -Method GET -Verbose -TimeoutSec ($DurationInSeconds + 10)
     Write-Host "Result: $($result.StatusCode) - $($result.Content)"
 }
-
-$IPAddress = "51.138.15.251"
 
 Write-Host "15 sec total, always healthy"
 Invoke-TestApi -IPAddress $IPAddress -DurationInSeconds 15 -HealthfailStartInSeconds 20 -HealthfailDurationInSeconds 5
