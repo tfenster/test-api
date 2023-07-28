@@ -10,8 +10,6 @@ kind: Deployment
 metadata:
   name: test-api
   namespace: test-api-linux
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "30"
 spec:
   replicas: 1
   selector:
@@ -26,13 +24,6 @@ spec:
       - name: test-api
         image: tobiasfenster/test-api:linux
         imagePullPolicy: Always
-        resources:
-          limits:
-            cpu: '4'
-            memory: 64Gi
-          requests:
-            cpu: 800m
-            memory: 4700Mi
         livenessProbe:
           httpGet:
             path: /timeout/health
@@ -68,6 +59,8 @@ kind: Service
 metadata:
   name: test-api
   namespace: test-api-linux
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "30"
 spec:
   type: LoadBalancer
   ports:
