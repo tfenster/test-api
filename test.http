@@ -1,5 +1,5 @@
-@host = localhost:5176
-#@host = 20.238.188.221
+#@host = localhost:5176
+@host = 51.138.15.251
 
 GET http://{{host}}/timeout
 Connection: keep-alive
@@ -26,4 +26,5 @@ GET http://{{host}}/timeout?durationInSeconds=9&healthfailStartInSeconds=3&healt
 GET http://{{host}}/timeout/health
 
 
-curl -v --request GET --url 'http://20.238.188.221/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80'
+curl -v --request GET --url 'http://20.23.142.219/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80'
+Invoke-WebRequest -Uri 'http://51.138.15.251/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80' -Method GET -Verbose
