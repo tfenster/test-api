@@ -1,0 +1,25 @@
+@host = localhost:5176
+#@host = 20.238.188.221
+
+GET http://{{host}}/timeout
+Connection: keep-alive
+
+###
+
+GET http://{{host}}/timeout
+
+###
+
+GET http://{{host}}/timeout?durationInSeconds=240&healthfailStartInSeconds=80&healthfailDurationInSeconds=80
+
+###
+
+GET http://{{host}}/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80
+
+
+###
+
+GET http://{{host}}/timeout/health
+
+
+curl --request GET --url 'http://20.238.188.221/timeout?durationInSeconds=15&healthfailStartInSeconds=5&healthfailDurationInSeconds=5'
