@@ -8,4 +8,4 @@ RUN dotnet publish -c release --property:PublishDir=/app -r win10-x64 --self-con
 
 FROM mcr.microsoft.com/dotnet/runtime:7.0-nanoserver-ltsc2022
 COPY --from=build /app .
-ENTRYPOINT ["./test-api"]
+ENTRYPOINT ["./test-api.exe"]
