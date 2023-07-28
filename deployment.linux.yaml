@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-api
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "30"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-api
+  template:
+    metadata:
+      labels:
+        app: test-api
+    spec:
+      containers:
+      - name: test-api
+        image: tobiasfenster/test-api:linux
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: '4'
+            memory: 64Gi
+          requests:
+            cpu: 800m
+            memory: 4700Mi
+        livenessProbe:
+          httpGet:
+            path: /timeout/health
+            port: 80
+          failureThreshold: 30
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /timeout/health
+            port: 80
+          failureThreshold: 20
+          initialDelaySeconds: 10
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 30
+        startupProbe:
+          httpGet:
+            path: /timeout/health
+            port: 80
+          failureThreshold: 120
+          initialDelaySeconds: 60
+          periodSeconds: 20
+          successThreshold: 1
+          timeoutSeconds: 5
+      nodeSelector:
+        kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: "http"
+  selector:
+    app: test-api

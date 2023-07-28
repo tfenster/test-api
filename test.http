@@ -16,10 +16,14 @@ GET http://{{host}}/timeout?durationInSeconds=240&healthfailStartInSeconds=80&he
 
 GET http://{{host}}/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80
 
+###
+
+GET http://{{host}}/timeout?durationInSeconds=9&healthfailStartInSeconds=3&healthfailDurationInSeconds=3
+
 
 ###
 
 GET http://{{host}}/timeout/health
 
 
-curl --request GET --url 'http://20.238.188.221/timeout?durationInSeconds=15&healthfailStartInSeconds=5&healthfailDurationInSeconds=5'
+curl -v --request GET --url 'http://20.238.188.221/timeout?durationInSeconds=250&healthfailStartInSeconds=80&healthfailDurationInSeconds=80'

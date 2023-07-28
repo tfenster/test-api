@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: test-api
-        image: tobiasfenster/test-api
+        image: tobiasfenster/test-api:windows
         imagePullPolicy: Always
         resources:
           limits:
@@ -53,7 +53,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
       nodeSelector:
-        kubernetes.io/os: linux
+        kubernetes.io/os: windows
 ---
 apiVersion: v1
 kind: Service
