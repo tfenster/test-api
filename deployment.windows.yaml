@@ -24,13 +24,6 @@ spec:
       - name: test-api
         image: tobiasfenster/test-api:windows
         imagePullPolicy: Always
-        resources:
-          limits:
-            cpu: '4'
-            memory: 64Gi
-          requests:
-            cpu: 800m
-            memory: 4700Mi
         livenessProbe:
           httpGet:
             path: /timeout/health
