@@ -25,8 +25,11 @@ public class TimeoutController : ControllerBase
         {
             var key = header.Key;
             var value = header.Value;
-            _logger.LogInformation($"Header: {key} = {value}");
+            _logger.LogInformation("Header: {key} = {value}", key, value);
         }
+
+        var url = $"{Request.Scheme}://{Request.Host}{Request.Path}{Request.QueryString}";
+        _logger.LogInformation("URL: {url}", url);
 
         _startTime = DateTime.UtcNow;
         while (DateTime.UtcNow < _startTime.AddSeconds(durationInSeconds))
@@ -50,7 +53,7 @@ public class TimeoutController : ControllerBase
             Thread.Sleep(1000);
         }
 
-        _logger.LogInformation("Get finished");
+        _logger.LogInformation("Get finished for {url}", url);
         return "Done";
     }
 
