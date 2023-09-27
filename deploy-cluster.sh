@@ -5,7 +5,7 @@ az account set --subscription="94670b10-08d0-4d17-bcfe-e01f701be9ff"
 # create cluster
 location=northeurope
 rg=aks-repro
-clustername=aks-repro
+clustername=$rg
 windowsuser=vm-admin
 windowspassword=Passw0rd*12345
 
