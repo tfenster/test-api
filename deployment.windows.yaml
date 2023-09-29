@@ -70,3 +70,4 @@ spec:
       name: "http"
   selector:
     app: test-api
+  #externalTrafficPolicy: Local
