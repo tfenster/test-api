@@ -1,34 +1,34 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: test-api-linux
+  name: test-api-linux-short
   labels:
-    name: test-api-linux
+    name: test-api-linux-short
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-api
-  namespace: test-api-linux
+  name: test-api-short
+  namespace: test-api-linux-short
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-api
+      app: test-api-short
   template:
     metadata:
       labels:
-        app: test-api
+        app: test-api-short
     spec:
       containers:
-      - name: test-api
+      - name: test-api-short
         image: tobiasfenster/test-api:linux
         imagePullPolicy: Always
         env:
         - name: externalBasepath
-          value: test-api-linux
+          value: test-api-short
         - name: waitTimeInMinutes
-          value: "12"
+          value: "1"
         livenessProbe:
           httpGet:
             path: /timeout/health
@@ -80,8 +80,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-api-ingress
-  namespace: test-api-linux
+  name: test-api-ingress-short
+  namespace: test-api-linux-short
   annotations:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: '900'
     nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: '900'
@@ -96,10 +96,10 @@ spec:
         paths:
           - backend:
               service:
-                name: test-api
+                name: test-api-short
                 port:
                   number: 80
-            path: /test-api-linux(/|$)(.*)
+            path: /test-api-short(/|$)(.*)
             pathType: Prefix
   tls:
     - hosts:
@@ -108,13 +108,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-api
-  namespace: test-api-linux
+  name: test-api-short
+  namespace: test-api-linux-short
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-tcp-idle-timeout: "30"
 spec:
   selector:
-    app: test-api
+    app: test-api-short
   ports:
     - protocol: TCP
       port: 80

@@ -15,7 +15,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/server/bin/Debug/net7.0/test-api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/server",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             //"serverReadyAction": {
@@ -23,7 +23,8 @@
             //    "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             //},
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "externalBasepath": "test123"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -43,7 +44,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/client/bin/Debug/net7.0/client.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/client",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             //"serverReadyAction": {

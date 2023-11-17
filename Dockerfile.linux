@@ -12,4 +12,7 @@ RUN apk add curl
 HEALTHCHECK --interval=5s --timeout=3s --retries=1 \
   CMD curl --fail http://localhost:80/timeout/health || exit 1
 COPY --from=build /app .
+WORKDIR /app
+COPY *.app .
+WORKDIR /
 ENTRYPOINT ["./test-api"]

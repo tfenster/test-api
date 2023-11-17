@@ -2,3 +2,4 @@
 **/obj
 Dockerfile.linux
 Dockerfile.windows
+**/appsettings.Development.json
