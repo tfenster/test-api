@@ -93,6 +93,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/rewrite-target: /BCFake/$2
 spec:
   ingressClassName: nginx
