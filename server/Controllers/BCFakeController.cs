@@ -29,9 +29,9 @@ public class BCFakeController : ControllerBase
 
         var response = new
         {
-            runtimeVersion = "11.0",
-            webApiVersion = "6.0",
-            debuggerVersion = "6.0",
+            runtimeVersion = _configuration.GetValue<string>("runtimeVersion"),
+            webApiVersion = _configuration.GetValue<string>("webApiVersion", "6.0"),
+            debuggerVersion = _configuration.GetValue<string>("debuggerVersion", "6.0"),
             webEndpoint = $"https://{Request.Host}/{_configuration.GetValue<string>("externalBasepath")}",
             extensionAllowedTargetLevel = "Internal"
         };
@@ -55,7 +55,7 @@ public class BCFakeController : ControllerBase
     [Produces("application/octet-stream")]
     public IActionResult GetFile()
     {
-        var filePath = "/app/Microsoft_Application_22.2.0.0.app";
+        var filePath = "/app/Microsoft_Application_25.1.0.0.app";
         var stream = new FileStream(filePath, FileMode.Open);
         return File(stream, "application/octet-stream", $"BCFake-{Guid.NewGuid()}.app");
     }

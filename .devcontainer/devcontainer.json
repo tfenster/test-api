@@ -1,5 +1,5 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -12,12 +12,8 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"installUsingPython": true,
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/powershell:1": {
-			"version": "latest"
-		}
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/powershell:1": {},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	}
 }

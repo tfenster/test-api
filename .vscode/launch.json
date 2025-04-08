@@ -13,7 +13,7 @@
             },
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/server/bin/Debug/net7.0/test-api.dll",
+            "program": "${workspaceFolder}/server/bin/Debug/net9.0/test-api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/server",
             "stopAtEntry": false,

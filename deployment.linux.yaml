@@ -21,41 +21,47 @@ spec:
         app: test-api
     spec:
       containers:
-      - name: test-api
-        image: tobiasfenster/test-api:linux
-        imagePullPolicy: Always
-        env:
-        - name: externalBasepath
-          value: test-api-linux
-        - name: waitTimeInMinutes
-          value: "12"
-        livenessProbe:
-          httpGet:
-            path: /timeout/health
-            port: 80
-          failureThreshold: 30
-          initialDelaySeconds: 10
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 60
-        readinessProbe:
-          httpGet:
-            path: /timeout/health
-            port: 80
-          failureThreshold: 20
-          initialDelaySeconds: 10
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 30
-        startupProbe:
-          httpGet:
-            path: /timeout/health
-            port: 80
-          failureThreshold: 120
-          initialDelaySeconds: 5
-          periodSeconds: 20
-          successThreshold: 1
-          timeoutSeconds: 5
+        - name: test-api
+          image: tobiasfenster/test-api:linux
+          imagePullPolicy: Always
+          env:
+            - name: externalBasepath
+              value: test-api-linux
+            - name: waitTimeInMinutes
+              value: "12"
+            - name: runtimeVersion
+              value: "14.1"
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+          livenessProbe:
+            httpGet:
+              path: /timeout/health
+              port: 80
+            failureThreshold: 30
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /timeout/health
+              port: 80
+            failureThreshold: 20
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 30
+          startupProbe:
+            httpGet:
+              path: /timeout/health
+              port: 80
+            failureThreshold: 120
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
       nodeSelector:
         kubernetes.io/os: linux
 ---
@@ -83,10 +89,10 @@ metadata:
   name: test-api-ingress
   namespace: test-api-linux
   annotations:
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: '900'
-    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: '900'
-    nginx.ingress.kubernetes.io/proxy-read-timeout: '900'
-    nginx.ingress.kubernetes.io/proxy-send-timeout: '900'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
     nginx.ingress.kubernetes.io/rewrite-target: /BCFake/$2
 spec:
   ingressClassName: nginx
