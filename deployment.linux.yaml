@@ -26,9 +26,7 @@ spec:
           imagePullPolicy: Always
           env:
             - name: externalBasepath
-              value: test-api
-            - name: waitTimeInMinutes
-              value: "12"
+              value: test-api-
             - name: runtimeVersion
               value: "14.1"
           resources:
@@ -38,7 +36,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /timeout/health
-              port: 80
+              port: 8080
             failureThreshold: 30
             initialDelaySeconds: 10
             periodSeconds: 30
@@ -47,7 +45,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /timeout/health
-              port: 80
+              port: 8080
             failureThreshold: 20
             initialDelaySeconds: 10
             periodSeconds: 30
@@ -56,7 +54,7 @@ spec:
           startupProbe:
             httpGet:
               path: /timeout/health
-              port: 80
+              port: 8080
             failureThreshold: 120
             initialDelaySeconds: 5
             periodSeconds: 20
@@ -89,12 +87,12 @@ metadata:
   name: test-api-ingress
   namespace: test-api-linux
   annotations:
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "900"
-    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "900"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    nginx.ingress.kubernetes.io/rewrite-target: /BCFake/$2
+    nginx.ingress.kubernetes.io/rewrite-target: /BCFake/$1/$2
 spec:
   ingressClassName: nginx
   rules:
@@ -106,7 +104,7 @@ spec:
                 name: test-api
                 port:
                   number: 80
-            path: /test-api(/|$)(.*)
+            path: /test-api-(.*)/(.*)
             pathType: Prefix
   tls:
     - hosts:
@@ -125,4 +123,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080

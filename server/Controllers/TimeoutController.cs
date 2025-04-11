@@ -16,7 +16,7 @@ public class TimeoutController : ControllerBase
     }
 
     [HttpGet]
-    public string Get(int durationInSeconds = 60*15, int healthfailStartInSeconds = 60*5, int healthfailDurationInSeconds = 60*5)
+    public string Get(int durationInSeconds = 60 * 15, int healthfailStartInSeconds = 60 * 5, int healthfailDurationInSeconds = 60 * 5)
     {
         _logger.LogInformation("Get called");
 
@@ -62,12 +62,12 @@ public class TimeoutController : ControllerBase
     {
         if (_healthy)
         {
-            _logger.LogInformation("Health check OK");
+            // _logger.LogInformation("Health check OK");
             return Ok();
         }
         else
         {
-            _logger.LogInformation("Health check failed");
+            // _logger.LogInformation("Health check failed");
             return StatusCode(500);
         }
     }
